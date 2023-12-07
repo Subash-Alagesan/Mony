@@ -1,0 +1,19 @@
+h1 {
+  text-align:center;
+  color:green;
+}
+
+.container .box {
+ display : flex;
+flex-direction : column;
+ 
+}
+.container .box .box-cell.box1 {
+  background:green;
+  color:white;
+  text-align:justify;
+}
+.container .box .box-cell.box2 {
+  background:lightgreen;
+  text-align:justify
+}
