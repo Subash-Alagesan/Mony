@@ -1,0 +1,22 @@
+.search-bar{
+  display: flex;
+  margin-left: 400px;
+}
+.input-search{
+height:30px;
+width:250px;
+border-radius: 5px;
+}
+
+.Serach-btn{
+  border-radius: 5px;
+}
+.label-name{
+  margin-left: 40px;
+}
+
+.input-text{
+  height:30px;
+  margin-left: 5px;
+  border-radius: 5px;
+  }

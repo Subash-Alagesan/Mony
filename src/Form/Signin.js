@@ -1,39 +1,44 @@
-import React from 'react';
-import './Signin.css';
+import React from "react";
+import * as Components from '../Form/Components';
+
 
 function Signin() {
-  return (
-    <div>
-      <h1 style={{ textAlign: 'center', color: 'green' }}>GeeksforGeeks</h1>
-      <div className="container">
-        <div className="box">
-          <div className="box-row">
-            <div className="box-cell box1">
-              It is a good platform to learn programming.
-              It is an educational website. Prepare for
-              the Recruitment drive of product based companies
-              like Microsoft, Amazon, Adobe etc with a free
-              online placement preparation course. The course
-              focuses on various MCQ's & Coding question likely
-              to be asked in the interviews & make your
-              upcoming placement season efficient and successful.
-            </div>
-            <div className="box-cell box2">
-              Also, any geeks can help other geeks by writing
-              articles on the GeeksforGeeks, publishing
-              articles follow few steps that are Articles
-              that need little modification/improvement
-              from reviewers are published first. To quickly
-              get your articles reviewed, please refer
-              existing articles, their formatting style,
-              coding style, and try to make you are close
-              to them.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  
+    const [signIn, toggle] = React.useState(true);
+    return(
+        
+        <Components.Container>
+            
+            <Components.SignInContainer signinIn={signIn}>
+                <Components.Form>
+                    <Components.Title>Sign in</Components.Title>
+                    <Components.Input type='email' placeholder='Email' />
+                    <Components.Input type='password' placeholder='Password' />
+                    <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
+                    <Components.Button>Sigin In</Components.Button>
+                </Components.Form>
+            </Components.SignInContainer>
+
+            <Components.OverlayContainer signinIn={signIn}>
+                <Components.Overlay signinIn={signIn}>
+
+            
+
+                    <Components.RightOverlayPanel signinIn={signIn}>
+                    <Components.Title1>Welcome to login</Components.Title1>
+                    <Components.Paragraph>
+                        Don't have an account?
+                    </Components.Paragraph>
+                        <Components.GhostButton1 onClick={() => toggle(true)}>
+                            SignUp
+                        </Components.GhostButton1> 
+                    </Components.RightOverlayPanel>
+
+                </Components.Overlay>
+            </Components.OverlayContainer>
+
+        </Components.Container>
+    )
 }
 
-export default Signin
+export default Signin;

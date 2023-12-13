@@ -3,9 +3,6 @@
     width: 100%;
     height: 30vh;
     background-color: black;
-    margin: 0;
-    box-sizing: border-box;
-    position: relative;  
     display: flex;
     justify-content: center;
     align-content: center;
@@ -36,6 +33,7 @@
     display: flex;
     border-radius: 5px;
     border: 1px solid black;
+    flex-wrap: wrap;
     
   }
   .incan-img {
@@ -81,6 +79,7 @@
     border-radius: 5px;
     border: 1px solid black;
     overflow: auto;
+    flex-wrap: wrap;
   }
 
   .tablist{

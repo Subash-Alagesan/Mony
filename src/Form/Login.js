@@ -48,6 +48,7 @@ const Login = () => {
     email: "",
     phonenumber: "",
     address: "",
+    pincode:"",
     password: "",
     account_name:"",
     acc_no:"",
@@ -142,6 +143,21 @@ const Login = () => {
                         type="text"
                         name="address"
                         placeholder="enter address"
+                        value={formData.address}
+                        onChange={handleInputChange}
+                      /></p>
+                      
+                    </div>
+                    </Grid>
+
+                    <Grid item xs={6}>
+                    <div className="field">
+                      <label className="lbl-field">Pin Code</label>
+                      <p><input
+                      className="input-field"
+                        type="text"
+                        name="pincode"
+                        placeholder="enter pincode"
                         value={formData.address}
                         onChange={handleInputChange}
                       /></p>
