@@ -18,10 +18,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import ProfileDetails from '../Dashboard/ProfileDetails';
-import  Geanology from '../Dashboard/Geanology';
-import MyEarnings from '../Dashboard/MyEarnings';
-import './SellerDashboard.css';
+import ProfileDetails from './ProfileDetails';
+import  Geanology from './Geanology';
+import MyEarnings from './MyEarnings';
+import './MemberDashboard.css';
 
 const drawerWidth = 240;
 
@@ -90,7 +90,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function SellerDashboard({ onSearch }) {
+export default function MemberDashboard({ onSearch }) {
   const theme = useTheme();
   const [open, setOpen] =useState(true);
   const [menudata, setMenudata] =useState("ProfileDetails");
