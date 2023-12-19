@@ -1,13 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
-import App from './App'; // Import your main App component
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import App from "./App";
+import { UserProvider } from "./Context/UserContext";
 
 ReactDOM.render(
   <React.StrictMode>
-
-      <App />
-
+    <Router>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
