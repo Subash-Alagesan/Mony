@@ -1,31 +1,32 @@
-.center-container {
+.center-container1 {
     display: flex;
     justify-content: center;
+    height: 110vh; 
     
-    height: 110vh; /* Adjust as needed */
-    margin-top: 100px;
+    margin-top: 20px;
   }
   
-  .form-container {
-    width: 400px; /* Adjust width as needed */
+  .form-container1 {
+    width: 100%; /* Adjust width as needed */
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: right;
+    border: none;
+
   }
 
-  .h-tag{
+  .h-tag1{
     display: flex;
     justify-content: center;
     color: black;
   }
-  .form-group{
+  .form-group1{
     margin-bottom: 5px;
     margin-top: 20px;
   }
-  .custom-input {
+  .user-input {
     width: 200px;
-    height: 30px;   
-    border: none;
+    height: 30px;  
     margin-left: 20px;
   }

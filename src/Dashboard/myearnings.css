@@ -1,29 +1,40 @@
-.grid-container{
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Changed to 1 column */
+    gap: 20px;
+  }
+  
+  /* Grid items */
+  .grid-item {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width:100%;
-    margin-top: 50px;
-    
-}
-.grid-main1{
-    background-color:blueviolet;
-    margin-bottom: 10px;
-    width:80%;
-    border-radius: 5px;
-    
-}
-.grid-main2{
-    background-color:blueviolet;
-    margin-bottom: 10px;
-    width:80%;
+    justify-content: center;
+    border: 2px solid #000; /* Replace with desired border properties */
+    padding: 20px; /* Adjust padding as needed */
+    width: 30%;
+    margin-left: 300px;
+    margin-bottom: 40px;
     border-radius: 5px;
 }
-.grid-main3{
-    background-color:blueviolet;
-    margin-bottom: 10px;
-    width:80%;
-    border-radius: 5px;
 
+.circular-image {
+    border-radius: 50%; /* Make the image circular */
+    width: 60px; /* Adjust the width and height as needed */
+    height: 60px;
+    object-fit: cover; /* Maintain aspect ratio */
+    border: 4px solid #000; /* Border around the circular image */
+    margin-top: -50px;
 }
+  
+  /* Name styling */
+  .name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+  .date{
+    font-size: 16px;
+    font-weight: bold;
+  }

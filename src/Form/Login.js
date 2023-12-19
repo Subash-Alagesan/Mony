@@ -123,7 +123,7 @@ const Login = () => {
                     </Grid>
                     <Grid item xs={6}>
                     <div className="field">
-                      <label className="lbl-field">Phonoe No</label>
+                      <label className="lbl-field">Phone No</label>
                       <p><input
                       className="input-field"
                         type="text"
@@ -183,11 +183,11 @@ const Login = () => {
                     </Grid>
                   </Grid>
 
-                  <Divider />
+                  {/* <Divider /> */}
                  
-                  <Button  className="btn-update" type="submit" variant="contained" color="primary" margintop="10px">
+                  {/* <Button  className="btn-update" type="submit" variant="contained" color="primary" margintop="10px">
                     Update
-                  </Button>
+                  </Button> */}
                 </form>
               </TabPanel>
               <TabPanel value="2">
@@ -312,9 +312,9 @@ const Login = () => {
                   <Divider />
                   <br></br>
                  
-                 <Button  className="btn-update" type="submit" variant="contained" color="primary" margintop="10px">
+                 {/* <Button  className="btn-update" type="submit" variant="contained" color="primary" margintop="10px">
                    Update
-                 </Button>
+                 </Button> */}
               </TabPanel>
               <TabPanel value="3">
 
@@ -430,7 +430,7 @@ const Login = () => {
                     </Grid>
                     <Grid item xs={6}>
                     <div className="field">
-                      <label className="lbl-field">Phonoe No</label>
+                      <label className="lbl-field">Phone No</label>
                       <p><input
                       className="input-field"
                         type="text"
@@ -473,13 +473,29 @@ const Login = () => {
                       
                     </div>
                     </Grid>
+
+                    <Grid item xs={6}>
+                    <div className="field">
+                      <label className="lbl-field">Pin Code</label>
+                      <p><input
+                      className="input-field"
+                        type="text"
+                        name="pincode"
+                        placeholder="enter pincode"
+                        value={formData.address}
+                        onChange={handleInputChange}
+                      /></p>
+                      
+                    </div>
+                    </Grid>
+
                   </Grid>
 
-                  <Divider />
+                  {/* <Divider /> */}
                  
-                  <Button  className="btn-update" type="submit" variant="contained" color="primary" margintop="10px">
+                  {/* <Button  className="btn-update" type="submit" variant="contained" color="primary" margintop="10px">
                     Update
-                  </Button>
+                  </Button> */}
                 </form>
               </TabPanel>
               <TabPanel value="2">

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './profiledetails.css';
+import './adduser.css';
 
-function ProfileDetails() {
+function Adduser() {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -35,13 +35,15 @@ function ProfileDetails() {
   };
 
   return (
-    <div className="center-container">
-      <form className="form-container" onSubmit={handleSubmit}>
-        <h3 className='h-tag'>ProfileDetails</h3>
-        <div className="form-group">
+
+   
+                    <div className="center-container1">
+      <form className="form-container1" onSubmit={handleSubmit}>
+        <h3 className='h-tag1'>UserDetails</h3>
+        <div className="form-group1">
           <label htmlFor="firstName">First Name:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="firstName"
             name="firstName"
@@ -49,10 +51,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Address:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="address"
             name="address"
@@ -60,10 +62,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Email:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="email"
             name="email"
@@ -71,10 +73,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Password:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="password"
             name="password"
@@ -82,10 +84,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Phone Number:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="phonenumber"
             name="phonenumber"
@@ -93,10 +95,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Account Name:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="account_name"
             name="account_name"
@@ -104,10 +106,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Account No:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="acc_no"
             name="acc_no"
@@ -115,10 +117,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Branch:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="branch"
             name="branch"
@@ -126,10 +128,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">IFSC Code:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="ifsc_code"
             name="ifsc_code"
@@ -138,10 +140,10 @@ function ProfileDetails() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Pancard No:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="pancard_no"
             name="pancard_no"
@@ -149,10 +151,10 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Aadhaar No:</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="aadhaar_no"
             name="aadhaar_no"
@@ -161,10 +163,10 @@ function ProfileDetails() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group1">
           <label htmlFor="firstName">Pincode :</label>
           <input
-            className="custom-input"
+            className="user-input"
             type="text"
             id="pincode"
             name="pincode"
@@ -177,7 +179,8 @@ function ProfileDetails() {
         <button type="submit">Submit</button>
       </form>
     </div>
+                   
   );
 }
 
-export default ProfileDetails;
+export default Adduser;
