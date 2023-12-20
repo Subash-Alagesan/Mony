@@ -1,8 +1,8 @@
 .center-container1 {
     display: flex;
     justify-content: center;
-    height: 110vh; 
-    
+    height: 80vh; 
+    width:100%;
     margin-top: 20px;
   }
   

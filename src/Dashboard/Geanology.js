@@ -84,7 +84,7 @@ function Geanology() {
       </form>
     </div>
     
-    <Dialog open={open} onClose={() => setOpen(false)} >
+    <Dialog open={open} onClose={() => setOpen(false)} className='dialog-box'>
 <Adduser />
     </Dialog>
 

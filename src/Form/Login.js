@@ -56,8 +56,6 @@ const Login = () => {
     ifsc_code:"",
     aadhaar_no:"",
     pan_no:"",
-    pancard_front_image:"",
-    pancard_back_image:"",
     company_logo:"",
     company_name:"",
     gst_no:"",
@@ -278,33 +276,7 @@ const Login = () => {
                     </div>
                     </Grid>
                    
-                    <Grid item xs={6}>
-      <div className="field">
-        <label className="lbl-field">Pancard Front Image</label>
-        <p><input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          // You might want to add more attributes like 'id', 'name', 'required', etc., as needed
-        /></p>
-        
-       
-      </div>
-    </Grid>
-
-                    <Grid item xs={6}>
-                    <div className="field">
-                      <label className="lbl-field">Pancard Back Image</label>
-                      <p><input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          // You might want to add more attributes like 'id', 'name', 'required', etc., as needed
-        /></p>
-                      
-                      
-                    </div>
-                    </Grid>
+                    
                     
                   </Grid>
                  
@@ -586,34 +558,6 @@ const Login = () => {
                     </div>
                     </Grid>
                    
-                    <Grid item xs={6}>
-      <div className="field">
-        <label className="lbl-field">Pancard Front Image</label>
-        <p><input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          // You might want to add more attributes like 'id', 'name', 'required', etc., as needed
-        /></p>
-        
-       
-      </div>
-    </Grid>
-
-                    <Grid item xs={6}>
-                    <div className="field">
-                      <label className="lbl-field">Pancard Back Image</label>
-                      <p><input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          // You might want to add more attributes like 'id', 'name', 'required', etc., as needed
-        /></p>
-                      
-                      
-                    </div>
-                    </Grid>
-                    
                   </Grid>
                  
                   <br></br>
