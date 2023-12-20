@@ -26,7 +26,7 @@ function Signin() {
     }
   };
   const handleSignUpClick = () => {
-    navigate("/login")
+    navigate("/Signup")
   }
 
   return (
