@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+<<<<<<< HEAD:src/Form/Login.js
 import "./Login.css";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -30,15 +31,40 @@ const Login = () => {
     setPancardFrontImage(selectedFile);
   };
 
+=======
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import buyer from './images/sellerr.jpeg';
+import AddAPhotoIcon from "@mui/icons-material/AddBox";
+import Avatar from "@mui/material/Avatar";
+
+function MemberTab() {
+
+  const [value, setValue] = useState('1');
+
+  
+>>>>>>> 771c8c0c8e19811cf0f03d2a5fd59cc6a1e4f9b0:src/Form/MemberTab.js
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+<<<<<<< HEAD:src/Form/Login.js
   const [selectedOption, setSelectedOption] = useState("buyer"); // Initially setting the default value to 'buyer'
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+=======
+  
+>>>>>>> 771c8c0c8e19811cf0f03d2a5fd59cc6a1e4f9b0:src/Form/MemberTab.js
 
   const [formData, setFormData] = useState({
     name: "",
@@ -73,6 +99,7 @@ const Login = () => {
     const file = e.target.files[0];
   };
 
+<<<<<<< HEAD:src/Form/Login.js
   const renderRightCardContent = () => {
     if (selectedOption === "buyer") {
       return (
@@ -91,6 +118,21 @@ const Login = () => {
             </Box>
             <TabPanel value="1">
               <form onSubmit={handleSubmit}>
+=======
+
+  return (
+    <Box sx={{ width: '100%', typography: 'body1' }}>
+        <TabContext value={value}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <TabList onChange={handleChange} aria-label="lab API tabs example" className="tablist">
+                  <Tab label="Profile" value="1" />
+                  <Tab label="Bank Details" value="2" />
+                  <Tab label="Company Details" value="3" />
+                </TabList>
+              </Box>
+              <TabPanel value="1">
+                <form onSubmit={handleSubmit}>
+>>>>>>> 771c8c0c8e19811cf0f03d2a5fd59cc6a1e4f9b0:src/Form/MemberTab.js
                 <Grid container spacing={3}>
                   <Grid item xs={6}>
                     <div className="field">
@@ -361,6 +403,7 @@ const Login = () => {
               <br></br>
               <Divider />
 
+<<<<<<< HEAD:src/Form/Login.js
               <Button
                 className="btn-update"
                 type="submit"
@@ -652,5 +695,12 @@ const Login = () => {
     </div>
   );
 };
+=======
+              </TabPanel>
+            </TabContext>
+            </Box>
+  )
+}
+>>>>>>> 771c8c0c8e19811cf0f03d2a5fd59cc6a1e4f9b0:src/Form/MemberTab.js
 
-export default Login;
+export default MemberTab;
