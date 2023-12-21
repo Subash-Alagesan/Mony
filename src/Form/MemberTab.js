@@ -49,9 +49,6 @@ function MemberTab() {
     console.log(formData); // For example, log the form data to the console
   };
 
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-  };
 
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>

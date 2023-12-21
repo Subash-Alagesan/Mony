@@ -9,7 +9,7 @@ import SellerTab from "./SellerTab";
 
 const Signup = () => {
   
-  const [selectedOption, setSelectedOption] = useState('buyer');
+  const [selectedOption, setSelectedOption] = useState('seller');
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -18,14 +18,17 @@ const Signup = () => {
 
 
   const renderRightCardContent = () => {
-    if (selectedOption === 'buyer') {
+    if (selectedOption === 'seller') {
       return (
-        <MemberTab />
+
+        <SellerTab />
+
+        
       );
-    } else if (selectedOption === 'seller') {
+    } else if (selectedOption === 'buyer') {
       return (
-      <SellerTab />
-        // <h1>yjhvv</h1>
+      
+        <MemberTab />
       );
     }
     return null;
@@ -53,8 +56,8 @@ const Signup = () => {
       <label>
         <input
           type="radio"
-          value="buyer"
-          checked={selectedOption === 'buyer'}
+          value="seller"
+          checked={selectedOption === 'seller'}
           onChange={handleOptionChange}
         />
         Seller
@@ -63,8 +66,8 @@ const Signup = () => {
       <label>
         <input
           type="radio"
-          value="seller"
-          checked={selectedOption === 'seller'}
+          value="buyer"
+          checked={selectedOption === 'buyer'}
           onChange={handleOptionChange}
         />
         Member
