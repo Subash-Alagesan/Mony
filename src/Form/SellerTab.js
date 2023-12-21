@@ -16,16 +16,10 @@ import Avatar from "@mui/material/Avatar";
 function SellerTab() {
 
   const [value, setValue] = useState('1');
-
   
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  
-
-
-
+  }; 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,9 +33,7 @@ function SellerTab() {
     ifsc_code:"",
     aadhaar_no:"",
     pan_no:"",
-    company_logo:"",
-    company_name:"",
-    gst_no:"",
+   
   });
 
   const handleInputChange = (event) => {
@@ -263,15 +255,10 @@ function SellerTab() {
                         placeholder="enter pan no"
                         value={formData.pan_no}
                         onChange={handleInputChange}
-                      /></p>
-                      
+                      /></p>                      
                     </div>
-                    </Grid>
-                   
-                    
-                    
-                  </Grid>
-                 
+                    </Grid>                                                     
+                  </Grid>                 
                   <br></br>
                   <Divider />
                   <br></br>
