@@ -1,26 +1,24 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../Api Base URL/axios"
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
-import buyer from "./images/sellerr.jpeg";
-import AddAPhotoIcon from "@mui/icons-material/AddBox";
-import Avatar from "@mui/material/Avatar";
 
 function MemberTab() {
   const [value, setValue] = useState("1");
-
+  const navigate = useNavigate();
+ 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: "",
     email: "",
     phonenumber: "",
@@ -36,34 +34,45 @@ function MemberTab() {
     company_logo: "",
     company_name: "",
     gst_no: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    // Process form data or perform any necessary actions here
-    console.log(formData); // For example, log the form data to the console
+    try{
+    const memberData = "/api/member/regMemb";
+    const response = await axios.post(memberData,formData);
+    console.log("Member Registered Successfully!!!", response.data.message,response.data.result);
+    alert("REgistered Successfully!! Now You are the Member of Mony!!! Welcome!!!")
+    setFormData(initialFormData); 
+    navigate("/")
+    }catch(error) {
+      console.error("Error while registering Member",error.message);
+    }    
+    console.log(formData);
   };
 
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList
-            onChange={handleChange}
-            aria-label="lab API tabs example"
-            className="tablist"
-          >
-            <Tab label="Profile" value="1" />
-            <Tab label="Bank Details" value="2" />
-          </TabList>
-        </Box>
-        <TabPanel value="1">
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              className="tablist"
+            >
+              <Tab label="Profile" value="1" />
+              <Tab label="Bank Details" value="2" />
+            </TabList>
+          </Box>
+          <TabPanel value="1">
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <div className="field">
@@ -158,117 +167,118 @@ function MemberTab() {
                 </div>
               </Grid>
             </Grid>
-          </form>
-        </TabPanel>
-        <TabPanel value="2">
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <div className="field">
-                <label className="lbl-field">Account Name</label>
-                <p>
-                  <input
-                    className="input-field"
-                    type="text"
-                    name="account_name"
-                    placeholder=" enter account name"
-                    value={formData.account_name}
-                    onChange={handleInputChange}
-                  />
-                </p>
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className="field">
-                <label className="lbl-field">Account No</label>
-                <p>
-                  <input
-                    className="input-field"
-                    type="text"
-                    name="acc_no"
-                    placeholder="enter accountno"
-                    value={formData.acc_no}
-                    onChange={handleInputChange}
-                  />
-                </p>
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className="field">
-                <label className="lbl-field">Branch</label>
-                <p>
-                  <input
-                    className="input-field"
-                    type="text"
-                    name="branch"
-                    placeholder="enter branch"
-                    value={formData.branch}
-                    onChange={handleInputChange}
-                  />
-                </p>
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className="field">
-                <label className="lbl-field">IFSC Code</label>
-                <p>
-                  <input
-                    className="input-field"
-                    type="text"
-                    name="ifsc_code"
-                    placeholder="enter ifsc code"
-                    value={formData.ifsc_code}
-                    onChange={handleInputChange}
-                  />
-                </p>
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className="field">
-                <label className="lbl-field">Aadhaar No</label>
-                <p>
-                  <input
-                    className="input-field"
-                    type="text"
-                    name="aadhaar_no"
-                    placeholder="enter aadhaar no"
-                    value={formData.aadhaar_no}
-                    onChange={handleInputChange}
-                  />
-                </p>
-              </div>
-            </Grid>
+          </TabPanel>
+          <TabPanel value="2">
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Account Name</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="account_name"
+                      placeholder=" enter account name"
+                      value={formData.account_name}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Account No</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="acc_no"
+                      placeholder="enter accountno"
+                      value={formData.acc_no}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Branch</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="branch"
+                      placeholder="enter branch"
+                      value={formData.branch}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">IFSC Code</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="ifsc_code"
+                      placeholder="enter ifsc code"
+                      value={formData.ifsc_code}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Aadhaar No</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="aadhaar_no"
+                      placeholder="enter aadhaar no"
+                      value={formData.aadhaar_no}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
 
-            <Grid item xs={6}>
-              <div className="field">
-                <label className="lbl-field">PAN No</label>
-                <p>
-                  <input
-                    className="input-field"
-                    type="text"
-                    name="pan_no"
-                    placeholder="enter pan no"
-                    value={formData.pan_no}
-                    onChange={handleInputChange}
-                  />
-                </p>
-              </div>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">PAN No</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="pan_no"
+                      placeholder="enter pan no"
+                      value={formData.pan_no}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
             </Grid>
-          </Grid>
-          <br></br>
+            <br></br>
 
-          <Divider />
-          <br></br>
-
-          <Button
-            className="btn-update"
-            type="submit"
-            variant="contained"
-            color="primary"
-            margintop="10px"
-          >
-            Update
-          </Button>
-        </TabPanel>
+            <Divider />
+            <br></br>
+            {value === "2" && (
+              <Button
+                className="btn-update"
+                type="submit"
+                variant="contained"
+                color="primary"
+                margintop="10px"
+              >
+                Update
+              </Button>
+            )}
+          </TabPanel>
+        </form>
       </TabContext>
     </Box>
   );

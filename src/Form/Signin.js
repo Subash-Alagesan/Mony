@@ -1,33 +1,62 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState,useEffect } from "react";
+import { useNavigate  } from "react-router";
 import * as Components from "../Form/Components";
-import { useUser } from "../Context/UserContext"; // Update the path accordingly
+import { useUser } from "../Context/UserContext";
+import { jwtDecode } from "jwt-decode";
 
 function Signin() {
   const navigate = useNavigate();
   const [signIn, toggle] = useState(true);
-  const { user, updateUser } = useUser();
+  const { user, updateUser, login,userType } = useUser(); // Add the login function from context
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     updateUser({ [name]: value });
   };
+  useEffect(() => {
+    let currentTime;
+    let decoded;
+  
+    if (localStorage.getItem("mony")) {
+      const token = localStorage.getItem("mony");
+      decoded = jwtDecode(token);
+      console.log(userType)
+      currentTime = Date.now() / 1000;
+      if (!localStorage.getItem("mony") || decoded?.exp < currentTime) {
+        // Handle expired or missing token
+      } else {
+        if (userType === "member") {
+          navigate("/member");
+        } else if (userType === "seller") {
+          navigate("/sellerdashboard");
+        }
+      }
+    }
+  }, [navigate, userType]);
+  
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = user;
-
-    // Dummy login logic for demonstration purposes
-    if (email === "mony@gmail.com" && password === "123") {
-      alert("Login Successful!!!!");
-         navigate("/member");
-    } else {
-      alert("Email or password does not match");
+    try {
+      // Call the login function from context
+      await login();
+      // Optionally, redirect to another page upon successful login
+      alert (`Login Suceesfully!!! ${userType} `)
+      if (userType === "member") {
+        navigate("/member");
+      } else if (userType === "seller") {
+        navigate("/sellerdashboard");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login failure, e.g., show an error message
     }
   };
+
   const handleSignUpClick = () => {
-    navigate("/Signup")
-  }
+    navigate("/Signup");
+  };
 
   return (
     <Components.Container>
