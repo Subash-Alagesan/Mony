@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from "react";
-import { useNavigate  } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import * as Components from "../Form/Components";
 import { useUser } from "../Context/UserContext";
 import { jwtDecode } from "jwt-decode";
@@ -7,7 +7,7 @@ import { jwtDecode } from "jwt-decode";
 function Signin() {
   const navigate = useNavigate();
   const [signIn, toggle] = useState(true);
-  const { user, updateUser, login,userType } = useUser(); // Add the login function from context
+  const { user, updateUser, login, userType } = useUser(); // Add the login function from context
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,11 +16,11 @@ function Signin() {
   useEffect(() => {
     let currentTime;
     let decoded;
-  
+
     if (localStorage.getItem("mony")) {
       const token = localStorage.getItem("mony");
       decoded = jwtDecode(token);
-      console.log(userType)
+      console.log(userType);
       currentTime = Date.now() / 1000;
       if (!localStorage.getItem("mony") || decoded?.exp < currentTime) {
         // Handle expired or missing token
@@ -33,8 +33,6 @@ function Signin() {
       }
     }
   }, [navigate, userType]);
-  
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +40,7 @@ function Signin() {
       // Call the login function from context
       await login();
       // Optionally, redirect to another page upon successful login
-      alert (`Login Suceesfully!!! ${userType} `)
+      alert(`Login Suceesfully!!! ${userType} `);
       if (userType === "member") {
         navigate("/member");
       } else if (userType === "seller") {
@@ -67,14 +65,14 @@ function Signin() {
             type="email"
             name="email"
             placeholder="Email"
-            value={user.email}
+            value={user?.email || ""}
             onChange={handleChange}
           />
           <Components.Input
             type="password"
             name="password"
             placeholder="Password"
-            value={user.password}
+            value={user?.password || ""}
             onChange={handleChange}
           />
           <Components.Anchor href="#">Forgot your password?</Components.Anchor>

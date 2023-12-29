@@ -11,6 +11,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
+   
   });
 
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -63,12 +64,10 @@ export const UserProvider = ({ children }) => {
       const { token } = response.data;
       setToken(token);
       setLoggedIn(true);
-
       // Optionally, decode the token to get user information
-      const decodedUser = jwtDecode(token);
-      updateUser(decodedUser);
+      const decodedUser = jwtDecode(token);     
+      updateUser(decodedUser);      
       setUserType(decodedUser.userType);
-
     } catch (error) {
       console.error("Login error:", error);
       setLoggedIn(false);
@@ -77,9 +76,16 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem("mony"); // Remove the token from localStorage
+    setLoggedIn(false);
+    setToken("");
+    setUser(null);
+  };
+
   return (
     <UserContext.Provider
-      value={{ user, updateUser, isLoggedIn, login, token,userType }}
+      value={{ user, updateUser, isLoggedIn, login, token, userType, logout }}
     >
       {children}
     </UserContext.Provider>
