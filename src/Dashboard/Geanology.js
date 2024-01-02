@@ -8,7 +8,7 @@ function Geanology() {
 
 
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     name: '',
     mobileNo: '',
     sponsor: ''

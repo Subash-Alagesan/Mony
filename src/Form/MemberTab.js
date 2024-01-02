@@ -13,6 +13,8 @@ import Divider from "@mui/material/Divider";
 function MemberTab() {
   const [value, setValue] = useState("1");
   const navigate = useNavigate();
+  const [memberCount, setMemberCount] = useState(0);
+
  
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,6 +52,7 @@ function MemberTab() {
     const response = await axios.post(memberData,formData);
     console.log("Member Registered Successfully!!!", response.data.message,response.data.result);
     alert("REgistered Successfully!! Now You are the Member of Mony!!! Welcome!!!")
+    setMemberCount((prevCount) => prevCount + 1);
     setFormData(initialFormData); 
     navigate("/")
     }catch(error) {
@@ -273,6 +276,7 @@ function MemberTab() {
                 variant="contained"
                 color="primary"
                 margintop="10px"
+                disabled={memberCount >= 3} 
               >
                 Update
               </Button>
