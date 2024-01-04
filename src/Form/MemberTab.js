@@ -1,6 +1,6 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../Api Base URL/axios"
+import axios from "../Api Base URL/axios";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -13,9 +13,7 @@ import Divider from "@mui/material/Divider";
 function MemberTab() {
   const [value, setValue] = useState("1");
   const navigate = useNavigate();
-  const [memberCount, setMemberCount] = useState(0);
 
- 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -32,10 +30,7 @@ function MemberTab() {
     branch: "",
     ifsc_code: "",
     aadhaar_no: "",
-    pan_no: "",
-    company_logo: "",
-    company_name: "",
-    gst_no: "",
+    pancard_no: "",    
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -45,19 +40,27 @@ function MemberTab() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
-    const memberData = "/api/member/regMemb";
-    const response = await axios.post(memberData,formData);
-    console.log("Member Registered Successfully!!!", response.data.message,response.data.result);
-    alert("REgistered Successfully!! Now You are the Member of Mony!!! Welcome!!!")
-    setMemberCount((prevCount) => prevCount + 1);
-    setFormData(initialFormData); 
-    navigate("/")
-    }catch(error) {
-      console.error("Error while registering Member",error.message);
-    }    
+   
+    try {
+      const memberData = "/api/member/regMemb";
+      const response = await axios.post(memberData, formData);
+      console.log(
+        "Member Registered Successfully!!!",
+        response.data.message,
+        response.data.result
+      );
+      alert(
+        "Registered Successfully!! Now You are the Member of Mony!!! Welcome!!!"
+      );
+      setFormData(initialFormData);
+      navigate("/");
+    } catch (error) {
+      console.error("Error while registering Member", error.message);
+      alert(error.message);
+    }
+
     console.log(formData);
   };
 
@@ -276,7 +279,6 @@ function MemberTab() {
                 variant="contained"
                 color="primary"
                 margintop="10px"
-                disabled={memberCount >= 3} 
               >
                 Update
               </Button>

@@ -1,4 +1,4 @@
-import axios from "../Axios Base URL/axios";
+import axios from "../Api Base URL/axios";
 
 const SetAuthToken = (token) => {
   if (token) {
