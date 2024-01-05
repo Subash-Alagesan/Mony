@@ -1,9 +1,9 @@
 // UserContext.js
-import React, { createContext, useState, useContext } from "react";
-import { jwtDecode } from "jwt-decode";
-import { useEffect } from "react";
 
-import axios from "../Api Base URL/axios"; // Import Axios
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import axios from "../Api Base URL/axios";
+import SetAuthToken from "./SetAuthToken"; // Adjust the path accordingly
 
 const UserContext = createContext();
 
@@ -11,11 +11,10 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
-   
   });
 
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [token, setToken] = useState(""); // Store the JWT token
+  const [token, setToken] = useState("");
   const [userType, setUserType] = useState("");
 
   const updateUser = (newUserData) => {
@@ -24,21 +23,23 @@ export const UserProvider = ({ children }) => {
       ...newUserData,
     }));
   };
-  const checkAuthentication = () => {
-    const token = localStorage.getItem("mony"); // Update storage key
 
-    if (token) {
-      const decoded = jwtDecode(token);
-      console.log("Decoded Value is", decoded);
+  const checkAuthentication = () => {
+    const storedToken = localStorage.getItem("mony");
+
+    if (storedToken) {
+      SetAuthToken(storedToken); // Set the token in axios headers
+      const decoded = jwtDecode(storedToken);
       const currentTime = Date.now() / 1000;
 
       if (decoded.exp > currentTime) {
         setLoggedIn(true);
-        setToken(token);
+        setToken(storedToken);
         updateUser(decoded);
+        setUserType(decoded.userType);
       } else {
         setLoggedIn(false);
-        setToken(null); // Remove expired token
+        setToken(null);
         updateUser(null);
       }
     } else {
@@ -49,24 +50,39 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    checkAuthentication(); // Check authentication on component mount
+    checkAuthentication();
   }, []);
 
+ 
+
+
+  
   const login = async () => {
     try {
-      // Use Axios for the login request
       const response = await axios.post("/api/login/login", user);
-
-      if (!response.data.token) {
+  
+      if (!response.data.AccessToken) {
+        console.error("Login failed: Token not present in response data", response.data);
         throw new Error("Login failed");
       }
-
-      const { token } = response.data;
+  
+      const { AccessToken: token } = response.data; // Use AccessToken property
+  
+      // Log the token before saving to localStorage
+      console.log("Token before saving to localStorage:", token);
+  
+      // Do not stringify the token before saving to localStorage
+      localStorage.setItem("mony", token);
+  
+      // Log the token after saving to localStorage
+      console.log("Token after saving to localStorage:", localStorage.getItem("mony"));
+  
+      SetAuthToken(token); // Set the token in axios headers
       setToken(token);
       setLoggedIn(true);
-      // Optionally, decode the token to get user information
-      const decodedUser = jwtDecode(token);     
-      updateUser(decodedUser);      
+  
+      const decodedUser = jwtDecode(token);
+      updateUser(decodedUser);
       setUserType(decodedUser.userType);
     } catch (error) {
       console.error("Login error:", error);
@@ -75,9 +91,14 @@ export const UserProvider = ({ children }) => {
       throw error;
     }
   };
+  
+  
+  
+  
 
   const logout = () => {
-    localStorage.removeItem("mony"); // Remove the token from localStorage
+    localStorage.removeItem("mony");
+    SetAuthToken(null); // Clear the token in axios headers
     setLoggedIn(false);
     setToken("");
     setUser(null);
@@ -85,7 +106,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, updateUser, isLoggedIn, login, token, userType, logout }}
+      value={{ user, updateUser, isLoggedIn, login, token, userType, logout, checkAuthentication }}
     >
       {children}
     </UserContext.Provider>
@@ -97,5 +118,5 @@ export const useUser = () => {
   if (!context) {
     throw new Error("useUser must be used within a UserProvider");
   }
-  return context;
+  return context;
 };

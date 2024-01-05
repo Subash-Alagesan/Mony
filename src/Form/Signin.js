@@ -1,38 +1,29 @@
+// Signin.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import * as Components from "../Form/Components";
 import { useUser } from "../Context/UserContext";
-import { jwtDecode } from "jwt-decode";
 
 function Signin() {
   const navigate = useNavigate();
   const [signIn, toggle] = useState(true);
-  const { user, updateUser, login, userType } = useUser(); // Add the login function from context
+  const { user, updateUser, login, userType, isLoggedIn } = useUser();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     updateUser({ [name]: value });
   };
-  useEffect(() => {
-    let currentTime;
-    let decoded;
 
-    if (localStorage.getItem("mony")) {
-      const token = localStorage.getItem("mony");
-      decoded = jwtDecode(token);
-      console.log(userType);
-      currentTime = Date.now() / 1000;
-      if (!localStorage.getItem("mony") || decoded?.exp < currentTime) {
-        // Handle expired or missing token
-      } else {
-        if (userType === "member") {
-          navigate("/member");
-        } else if (userType === "seller") {
-          navigate("/sellerdashboard");
-        }
+  useEffect(() => {
+    // Redirect if the user is already logged in
+    if (isLoggedIn) {
+      if (userType === "member") {
+        navigate("/member");
+      } else if (userType === "seller") {
+        navigate("/sellerdashboard");
       }
     }
-  }, [navigate, userType]);
+  }, [navigate, isLoggedIn, userType]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +31,7 @@ function Signin() {
       // Call the login function from context
       await login();
       // Optionally, redirect to another page upon successful login
-      alert(`Login Suceesfully!!! ${userType} `);
+      alert(`Login Successfully!!! ${userType}`);
       if (userType === "member") {
         navigate("/member");
       } else if (userType === "seller") {
@@ -95,4 +86,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default Signin;
