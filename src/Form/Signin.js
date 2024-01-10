@@ -1,33 +1,51 @@
-import React, { useState } from "react";
+// Signin.js
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import * as Components from "../Form/Components";
-import { useUser } from "../Context/UserContext"; // Update the path accordingly
+import { useUser } from "../Context/UserContext";
 
 function Signin() {
   const navigate = useNavigate();
   const [signIn, toggle] = useState(true);
-  const { user, updateUser } = useUser();
+  const { user, updateUser, login, userType, isLoggedIn } = useUser();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     updateUser({ [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { email, password } = user;
+  useEffect(() => {
+    // Redirect if the user is already logged in
+    if (isLoggedIn) {
+      if (userType === "member") {
+        navigate("/member");
+      } else if (userType === "seller") {
+        navigate("/sellerdashboard");
+      }
+    }
+  }, [navigate, isLoggedIn, userType]);
 
-    // Dummy login logic for demonstration purposes
-    if (email === "mony@gmail.com" && password === "123") {
-      alert("Login Successful!!!!");
-         navigate("/member");
-    } else {
-      alert("Email or password does not match");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Call the login function from context
+      await login();
+      // Optionally, redirect to another page upon successful login
+      alert(`Login Successfully!!! ${userType}`);
+      if (userType === "member") {
+        navigate("/member");
+      } else if (userType === "seller") {
+        navigate("/sellerdashboard");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login failure, e.g., show an error message
     }
   };
+
   const handleSignUpClick = () => {
-    navigate("/Signup")
-  }
+    navigate("/Signup");
+  };
 
   return (
     <Components.Container>
@@ -38,14 +56,14 @@ function Signin() {
             type="email"
             name="email"
             placeholder="Email"
-            value={user.email}
+            value={user?.email || ""}
             onChange={handleChange}
           />
           <Components.Input
             type="password"
             name="password"
             placeholder="Password"
-            value={user.password}
+            value={user?.password || ""}
             onChange={handleChange}
           />
           <Components.Anchor href="#">Forgot your password?</Components.Anchor>
@@ -68,4 +86,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default Signin;

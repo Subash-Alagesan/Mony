@@ -1,26 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../Api Base URL/axios";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
-import buyer from "./images/sellerr.jpeg";
-import AddAPhotoIcon from "@mui/icons-material/AddBox";
-import Avatar from "@mui/material/Avatar";
 
 function MemberTab() {
   const [value, setValue] = useState("1");
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: "",
     email: "",
     phonenumber: "",
@@ -32,25 +30,48 @@ function MemberTab() {
     branch: "",
     ifsc_code: "",
     aadhaar_no: "",
-    pan_no: "",
-    company_logo: "",
-    company_name: "",
-    gst_no: "",
-  });
+    pancard_no: "",    
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+<<<<<<< HEAD
     
     console.log(formData); 
   };
+=======
+   
+    try {
+      const memberData = "/api/member/regMemb";
+      const response = await axios.post(memberData, formData);
+      console.log(
+        "Member Registered Successfully!!!",
+        response.data.message,
+        response.data.result
+      );
+      alert(
+        "Registered Successfully!! Now You are the Member of Mony!!! Welcome!!!"
+      );
+      setFormData(initialFormData);
+      navigate("/");
+    } catch (error) {
+      console.error("Error while registering Member", error.message);
+      alert(error.message);
+    }
+>>>>>>> 5dba6901faaa185c7b8d1ff0a25a9496598cb804
 
+    console.log(formData);
+  };
 
   return (
+<<<<<<< HEAD
     
     <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
@@ -67,6 +88,28 @@ function MemberTab() {
                     <div className="field">
                       <label className="lbl-field">Name</label>
                       <p><input
+=======
+    <Box sx={{ width: "100%", typography: "body1" }}>
+      <TabContext value={value}>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              className="tablist"
+            >
+              <Tab label="Profile" value="1" />
+              <Tab label="Bank Details" value="2" />
+            </TabList>
+          </Box>
+          <TabPanel value="1">
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Name</label>
+                  <p>
+                    <input
+>>>>>>> 5dba6901faaa185c7b8d1ff0a25a9496598cb804
                       className="input-field"
                       type="text"
                       name="name"
@@ -129,6 +172,7 @@ function MemberTab() {
                       <p>
                       <input
                       className="input-field"
+<<<<<<< HEAD
                         type="password"
                         name="password"
                         placeholder="Enter Password"
@@ -157,6 +201,17 @@ function MemberTab() {
 
                   </Grid>
                   
+=======
+                      type="text"
+                      name="pincode"
+                      placeholder="enter pincode"
+                      value={formData.pincode}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+>>>>>>> 5dba6901faaa185c7b8d1ff0a25a9496598cb804
 
               <Grid item xs={6}>
                 <div className="field">
@@ -175,10 +230,108 @@ function MemberTab() {
               </Grid>
               </form>
             </Grid>
+<<<<<<< HEAD
             
+=======
+          </TabPanel>
+          <TabPanel value="2">
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Account Name</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="account_name"
+                      placeholder=" enter account name"
+                      value={formData.account_name}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Account No</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="acc_no"
+                      placeholder="enter accountno"
+                      value={formData.acc_no}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Branch</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="branch"
+                      placeholder="enter branch"
+                      value={formData.branch}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">IFSC Code</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="ifsc_code"
+                      placeholder="enter ifsc code"
+                      value={formData.ifsc_code}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">Aadhaar No</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="aadhaar_no"
+                      placeholder="enter aadhaar no"
+                      value={formData.aadhaar_no}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+>>>>>>> 5dba6901faaa185c7b8d1ff0a25a9496598cb804
 
-            {/* <Divider /> */}
+              <Grid item xs={6}>
+                <div className="field">
+                  <label className="lbl-field">PAN No</label>
+                  <p>
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="pan_no"
+                      placeholder="enter pan no"
+                      value={formData.pan_no}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                </div>
+              </Grid>
+            </Grid>
+            <br></br>
 
+<<<<<<< HEAD
             {/* <Button  className="btn-update" type="submit" variant="contained" color="primary" margintop="10px">
                     Update
                   </Button> */}
@@ -286,6 +439,26 @@ function MemberTab() {
             </TabContext>
             </Box>
   )
+=======
+            <Divider />
+            <br></br>
+            {value === "2" && (
+              <Button
+                className="btn-update"
+                type="submit"
+                variant="contained"
+                color="primary"
+                margintop="10px"
+              >
+                Update
+              </Button>
+            )}
+          </TabPanel>
+        </form>
+      </TabContext>
+    </Box>
+  );
+>>>>>>> 5dba6901faaa185c7b8d1ff0a25a9496598cb804
 }
 
 export default MemberTab;

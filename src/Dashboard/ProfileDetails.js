@@ -1,26 +1,46 @@
-import React, { useState } from 'react';
-import './profiledetails.css';
+import React, { useState, useEffect } from "react";
+import { useUser } from "../Context/UserContext";
+import axios from "../Api Base URL/axios";
+import "./profiledetails.css";
 
 function ProfileDetails() {
+  const { user } = useUser();
+  console.log("user value is", user.userId);
   const [formData, setFormData] = useState({
-    name: '',
-    address: '',
-    email: '',
-    password: '',
-    phonenumber: '',
-    account_name: '',
-    acc_no: '',
-    branch: '',
-    ifsc_code: '', 
-    pancard_no:'',
-    aadhaar_no:'',
-    pincode:'',
+    name: "",
+    address: "",
+    email: "",
+    // password: "",
+    phonenumber: "",
+    account_name: "",
+    acc_no: "",
+    branch: "",
+    ifsc_code: "",
+    pancard_no: "",
+    aadhaar_no: "",
+    pincode: "",
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Inside Fetching")
+      try {
+        const response = await axios.get(
+          `/api/member/getMembById/${user.userId}`
+        );
+        setFormData(response.data.member);
+      } catch (error) {
+        console.error("Error fetching member data:", error.message);
+      }
+    };
+
+    // Fetch data when the component mounts
+    fetchData();
+  }, [user.userId]);
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     // If the input type is file, update the state with files
-    const updatedValue = type === 'file' ? files[0] : value;
+    const updatedValue = type === "file" ? files[0] : value;
 
     setFormData({
       ...formData,
@@ -28,24 +48,18 @@ function ProfileDetails() {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here using formData
-    console.log(formData);
-  };
-
   return (
     <div className="center-container">
-      <form className="form-container" onSubmit={handleSubmit}>
-        <h3 className='h-tag'>ProfileDetails</h3>
+      <form className="form-container">
+        <h3 className="h-tag">ProfileDetails</h3>
         <div className="form-group">
-          <label htmlFor="firstName">First Name:</label>
+          <label htmlFor="name"> Name:</label>
           <input
             className="custom-input"
             type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
           />
         </div>
@@ -71,7 +85,7 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="firstName">Password:</label>
           <input
             className="custom-input"
@@ -81,7 +95,7 @@ function ProfileDetails() {
             value={formData.password}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="firstName">Phone Number:</label>
           <input
@@ -172,9 +186,6 @@ function ProfileDetails() {
             onChange={handleChange}
           />
         </div>
-
-
-        
       </form>
     </div>
   );
