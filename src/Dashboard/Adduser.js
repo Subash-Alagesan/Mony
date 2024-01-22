@@ -33,32 +33,17 @@ function Adduser() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  // const [genealogyData, setGenealogyData] = useState(/* initial genealogy data */);
 
+  // const fetchGenealogyData = async () => {
   //   try {
-  //     const memberData = "/api/member/genealogy";
-  //     console.log("FormData is", formData);
-  //     const response = await axios.post(memberData, formData);
-  //     console.log("Response is", response);
-
-  //     if (response.data && response.data.message) {
-  //       console.log("Member Registered Successfully!!!", response.data.message);
-  //       alert(
-  //         "Registered Successfully!! Now You are the Member of Mony!!! Welcome!!!"
-  //       );
-  //       setFormData(initialFormData);
-  //     } else {
-  //       console.error("Unexpected response format:", response);
-  //       alert(
-  //         "Unexpected response format. Please check the console for details."
-  //       );
-  //     }
+  //     // Fetch the updated genealogy data from your API
+  //     const response = await axios.get("/api/member/genealogy");
+  
+  //     // Update the state with the new genealogy data
+  //     setGenealogyData(response.data);
   //   } catch (error) {
-  //     console.error("Error while registering Member", error.message);
-  //     alert(
-  //       "Error while registering Member. Please check the console for details."
-  //     );
+  //     console.error("Error while fetching genealogy data", error.message);
   //   }
   // };
   const handleSubmit = async (e) => {
