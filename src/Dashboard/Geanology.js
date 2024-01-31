@@ -15,10 +15,12 @@ const highlightedCardStyle = {
   margin: "20px auto",
   marginLeft:"250px",
   padding: "20px",
-  border: "1px solid #E0E0E0",
-  backgroundColor: 'rgba(0, 5, 25, 0.5)',
+  border: "1px solid #e0e0e0",
+  backgroundColor: 'rgba(25, 25, 25, 0.5)',
   boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
+  
 };
+
 function Geanology() {
   const { user, token } = useUser();
   const [userData, setUserData] = useState({
@@ -32,8 +34,10 @@ function Geanology() {
     const fetchData = async () => {
       try {
         SetAuthToken(token);
+
         const response = await axios.get(`/api/member/listmembersfromparent/${user.userId}`);
         const { parent, descendants } = response.data;
+
         setUserData(parent);
         setDescendantsData(descendants);
       } catch (error) {
@@ -67,7 +71,7 @@ function Geanology() {
                 style={{
                   backgroundColor: 'transparent', // Set to the desired background color
                   color: 'white', // Set to the desired text color
-                  border: '1px solid #E0E0E0', // Match the border color of the card
+                  border: '1px solid #e0e0e0', // Match the border color of the card
                   padding: '5px', // Add padding to match the card's padding
                 }}
               />
@@ -84,7 +88,7 @@ function Geanology() {
                 style={{
                   backgroundColor: 'transparent', // Set to the desired background color
                   color: 'white', // Set to the desired text color
-                  border: '1px solid #E0E0E0', // Match the border color of the card
+                  border: '1px solid #e0e0e0', // Match the border color of the card
                   padding: '5px', // Add padding to match the card's padding
                 }}
               />
@@ -101,7 +105,7 @@ function Geanology() {
                 style={{
                   backgroundColor: 'transparent', // Set to the desired background color
                   color: 'white', // Set to the desired text color
-                  border: '1px solid #E0E0E0', // Match the border color of the card
+                  border: '1px solid #e0e0e0', // Match the border color of the card
                   padding: '5px', // Add padding to match the card's padding
                 }}
               />
@@ -135,7 +139,7 @@ function Geanology() {
                     style={{
                       backgroundColor: 'transparent', // Set to the desired background color
                       color: 'white', // Set to the desired text color
-                      border: '1px solid #E0E0E0', // Match the border color of the card
+                      border: '1px solid #e0e0e0', // Match the border color of the card
                       padding: '5px', // Add padding to match the card's padding
                     }}
                   />
@@ -152,7 +156,7 @@ function Geanology() {
                     style={{
                       backgroundColor: 'transparent', // Set to the desired background color
                       color: 'white', // Set to the desired text color
-                      border: '1px solid #E0E0E0', // Match the border color of the card
+                      border: '1px solid #e0e0e0', // Match the border color of the card
                       padding: '5px', // Add padding to match the card's padding
                     }}
                   />
@@ -171,7 +175,7 @@ function Geanology() {
                     style={{
                       backgroundColor: 'transparent', // Set to the desired background color
                       color: 'white', // Set to the desired text color
-                      border: '1px solid #E0E0E0', // Match the border color of the card
+                      border: '1px solid #e0e0e0', // Match the border color of the card
                       padding: '5px', // Add padding to match the card's padding
                     }}
                   />

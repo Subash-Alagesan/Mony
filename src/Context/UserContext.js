@@ -1,9 +1,9 @@
-// UserContext.js
+
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "../Api Base URL/axios";
-import SetAuthToken from "./SetAuthToken"; // Adjust the path accordingly
+import SetAuthToken from "./SetAuthToken"; 
 
 const UserContext = createContext();
 
