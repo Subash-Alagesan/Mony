@@ -23,7 +23,8 @@ import ProfileDetails from "./ProfileDetails";
 import Geanology from "./Geanology";
 import MyEarnings from "./MyEarnings";
 import AllProducts from "./AllProducts";
-import "./MemberDashboard.css";
+import AddProduct from "./AddProduct";
+import "./SellerDashboard.css";
 import { useUser } from "../Context/UserContext";
 import { Menu, MenuItem } from '@mui/material';
 
@@ -94,7 +95,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MemberDashboard({ onSearch }) {
+export default function SellerDashboard({ onSearch }) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [menudata, setMenudata] = useState("ProfileDetails");
@@ -190,7 +191,7 @@ export default function MemberDashboard({ onSearch }) {
             </div>
 
             <div className="label-name">
-              <label htmlFor="name">Member Name:</label>
+              <label htmlFor="name">Seller Name:</label>
               <input
                 className="input-text"
                 type="text"
@@ -242,55 +243,8 @@ export default function MemberDashboard({ onSearch }) {
                 <ListItemText primary="Profiledetails" />
               </ListItemButton>
             </ListItem>
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => setMenudata("Geanology")}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 6.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  <MailIcon />
-                </ListItemIcon>
-                <ListItemText primary="Geanology tree" />
-              </ListItemButton>
-            </ListItem>
-
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => setMenudata("MyEarnings")}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 6.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  <MailIcon />
-                </ListItemIcon>
-                <ListItemText primary="MyEarnings" />
-              </ListItemButton>
-            </ListItem>
+        
+        
 
             <ListItem
         disablePadding
@@ -320,6 +274,10 @@ export default function MemberDashboard({ onSearch }) {
           {/* Submenu content goes here */}
           AllProducts
         </MenuItem>
+        <MenuItem onClick={() => setMenudata("Product")}>
+          {/* Submenu content goes here */}
+          AddProducts
+        </MenuItem>
         
       </Menu>
           </List>
@@ -330,6 +288,7 @@ export default function MemberDashboard({ onSearch }) {
           {menudata === "Geanology" && <Geanology />}
           {menudata === "MyEarnings" && <MyEarnings />}
           {menudata === "Products" && <AllProducts />}
+          {menudata === "Product" && <AddProduct />}
         </Box>
       </Box>
     </>

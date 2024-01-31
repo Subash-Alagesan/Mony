@@ -9,12 +9,13 @@ import GeanologyTree from "./Dashboard/Geanology";
 import MyEarnings from "./Dashboard/MyEarnings";
 import MemberDashboard from "./Dashboard/MemberDashboard";
 import ProtectedRoutes from "./ProductedRoutes";
+import SellerDashboard from "./Dashboard/SellerDashboard";
 
 function App() {
   return (
     <UserProvider>
       <Routes>
-        <Route path="/" element={<Signin />} />
+        <Route path="/" element={<SellerDashboard />} />
         <Route path="/Signup" element={<Signup />} />
         <Route
           path="/member"
