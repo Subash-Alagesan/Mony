@@ -17,7 +17,7 @@ const highlightedCardStyle = {
   marginLeft:"250px",
   padding: "20px",
   border: "1px solid #e0e0e0",
-  backgroundColor: 'rgba(25, 25, 25, 0.5)',
+  backgroundColor: 'rgba(0, 5, 25, 0.5)',
   boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
   
 };
