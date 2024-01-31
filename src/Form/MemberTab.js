@@ -9,15 +9,12 @@ import TabPanel from "@mui/lab/TabPanel";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
-
 function MemberTab() {
   const [value, setValue] = useState("1");
   const navigate = useNavigate();
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   const initialFormData = {
     name: "",
     email: "",
@@ -31,18 +28,21 @@ function MemberTab() {
     ifsc_code: "",
     aadhaar_no: "",
     pancard_no: "",
+    pancard_no: "",
   };
-
   const [formData, setFormData] = useState(initialFormData);
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+<<<<<<< HEAD
+    
+    console.log(formData); 
+  };
+=======
+   
     try {
       const memberData = "/api/member/regMemb";
       const response = await axios.post(memberData, formData);
@@ -61,7 +61,6 @@ function MemberTab() {
       alert(error.message);
     }
   };
-
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
@@ -169,13 +168,11 @@ function MemberTab() {
                 </div>
               </Grid>
             </Grid>
-            <Divider />
-            <br></br>
-           
-          </form>
-        </TabPanel>
-        <TabPanel value="2">
-          <form onSubmit={handleSubmit}>
+<<<<<<< HEAD
+            
+=======
+          </TabPanel>
+          <TabPanel value="2">
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <div className="field">
@@ -260,7 +257,7 @@ function MemberTab() {
                       className="input-field"
                       type="text"
                       name="pan_no"
-                      placeholder="Enter pan no"
+                      placeholder="enter pan no"
                       value={formData.pan_no}
                       onChange={handleInputChange}
                     />
@@ -285,5 +282,4 @@ function MemberTab() {
     </Box>
   );
 }
-
 export default MemberTab;

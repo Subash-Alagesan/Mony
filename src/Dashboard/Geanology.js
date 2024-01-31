@@ -10,7 +10,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
 const highlightedCardStyle = {
   width: "35%",
   margin: "20px auto",
@@ -31,7 +30,6 @@ function Geanology() {
   });
   const [descendantsData, setDescendantsData] = useState([]);
   const [open, setOpen] = useState(false);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -46,22 +44,18 @@ function Geanology() {
         console.error("Error fetching member data:", error.message);
       }
     };
-
     fetchData();
   }, [user.userId, token]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Parent:", userData);
   };
-
   return (
     <>
       <Box height={100} />
       <Typography variant="h4" component="div" gutterBottom>
         Geanology Tree
       </Typography>
-
       <Card style={highlightedCardStyle}>
         <CardContent>
           <form onSubmit={handleSubmit} className="form-geo">
@@ -127,7 +121,6 @@ function Geanology() {
           </form>
         </CardContent>
       </Card>
-
       {/* Display Descendants */}
       <div>
         {descendantsData.map((descendant) => (
@@ -192,12 +185,10 @@ function Geanology() {
           </Card>
         ))}
       </div>
-
       <Dialog open={open} onClose={() => setOpen(false)} className="dialog-box">
         <Adduser />
       </Dialog>
     </>
   );
 }
-
 export default Geanology;

@@ -1,0 +1,19 @@
+.Add-product{
+     margin-top: 80px;
+     margin-left: 100px;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    height:100vh;
+    width:70%;
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-wrap: nowrap;
+}
+.h2-tag{
+    text-align: center;
+}
+.form{
+    padding: 10px 20px;
+}
