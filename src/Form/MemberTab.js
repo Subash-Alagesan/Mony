@@ -28,7 +28,6 @@ function MemberTab() {
     ifsc_code: "",
     aadhaar_no: "",
     pancard_no: "",
-    pancard_no: "",
   };
   const [formData, setFormData] = useState(initialFormData);
   const handleInputChange = (event) => {
@@ -37,12 +36,6 @@ function MemberTab() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-<<<<<<< HEAD
-    
-    console.log(formData); 
-  };
-=======
-   
     try {
       const memberData = "/api/member/regMemb";
       const response = await axios.post(memberData, formData);
@@ -168,11 +161,21 @@ function MemberTab() {
                 </div>
               </Grid>
             </Grid>
-<<<<<<< HEAD
-            
-=======
-          </TabPanel>
-          <TabPanel value="2">
+            <Divider />
+            <br></br>
+            <Button
+              className="btn-update"
+              type="submit"
+              variant="contained"
+              color="primary"
+              margintop="10px"
+            >
+              Update
+            </Button>
+          </form>
+        </TabPanel>
+        <TabPanel value="2">
+          <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <div className="field">
@@ -257,8 +260,8 @@ function MemberTab() {
                       className="input-field"
                       type="text"
                       name="pan_no"
-                      placeholder="enter pan no"
-                      value={formData.pan_no}
+                      placeholder="Enter pan no"
+                      value={formData.pancard_no}
                       onChange={handleInputChange}
                     />
                   </p>
