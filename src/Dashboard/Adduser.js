@@ -9,7 +9,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 
-function Adduser() {
+function Adduser({ onDataUpdated }) {
   const navigate = useNavigate();
   const { token } = useUser();
   const initialFormData = {
@@ -33,19 +33,6 @@ function Adduser() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const [genealogyData, setGenealogyData] = useState(/* initial genealogy data */);
-
-  // const fetchGenealogyData = async () => {
-  //   try {
-  //     // Fetch the updated genealogy data from your API
-  //     const response = await axios.get("/api/member/genealogy");
-  
-  //     // Update the state with the new genealogy data
-  //     setGenealogyData(response.data);
-  //   } catch (error) {
-  //     console.error("Error while fetching genealogy data", error.message);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -66,28 +53,54 @@ function Adduser() {
 
       console.log("Response is", response);
 
-      if (response.data && response.data.message) {
-        console.log("Member Registered Successfully!!!", response.data.message);
-        alert(
-          "Registered Successfully!! Now You are the Member of Mony!!! Welcome!!!"
-        );
-        setFormData(initialFormData);
-      } else {
-        console.error("Unexpected response format:", response);
-        alert(
-          "Unexpected response format. Please check the console for details."
-        );
-      }
-    } catch (error) {
-      console.error("Error while registering Member", error.message);
+    //   if (response.data && response.data.message) {
+    //     console.log("Member Registered Successfully!!!", response.data.message);
+    //     alert(
+    //       "Registered Successfully!! Now You are the Member of Mony!!! Welcome!!!"
+    //     );
+    //     setFormData(initialFormData);
+    //   } else {
+    //     console.error("Unexpected response format:", response);
+    //     alert(
+    //       "Unexpected response format. Please check the console for details."
+    //     );
+    //   }
+    // } catch (error) {
+    //   console.error("Error while registering Member", error.message);
+    //   alert(
+    //     "Error while registering Member. Please check the console for details."
+    //   );
+    // } finally {
+    //   // Reset the authentication token in the headers after the request
+    //   SetAuthToken(null);
+    // }
+    
+    if (response.data && response.data.message) {
+      console.log("Member Registered Successfully!!!", response.data.message);
       alert(
-        "Error while registering Member. Please check the console for details."
+        "Registered Successfully!! Now You are the Member of Mony!!! Welcome!!!"
       );
-    } finally {
-      // Reset the authentication token in the headers after the request
-      SetAuthToken(null);
+      setFormData(initialFormData);
+
+      // Trigger the callback to fetch updated data
+      onDataUpdated();
+    } else {
+      console.error("Unexpected response format:", response);
+      alert(
+        "Unexpected response format. Please check the console for details."
+      );
     }
-  };
+  } catch (error) {
+    console.error("Error while registering Member", error.message);
+    alert(
+      "Error while registering Member. Please check the console for details."
+    );
+  } finally {
+    // Reset the authentication token in the headers after the request
+    SetAuthToken(null);
+  }
+};
+  
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
