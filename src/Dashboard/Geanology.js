@@ -46,6 +46,7 @@ function Geanology() {
 
   useEffect(() => {
     fetchData(); // Initial data fetch
+    setOpen(false);
   }, [user.userId, token]);
 
   const handleDataUpdated = () => {

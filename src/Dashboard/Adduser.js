@@ -53,27 +53,7 @@ function Adduser({ onDataUpdated }) {
 
       console.log("Response is", response);
 
-    //   if (response.data && response.data.message) {
-    //     console.log("Member Registered Successfully!!!", response.data.message);
-    //     alert(
-    //       "Registered Successfully!! Now You are the Member of Mony!!! Welcome!!!"
-    //     );
-    //     setFormData(initialFormData);
-    //   } else {
-    //     console.error("Unexpected response format:", response);
-    //     alert(
-    //       "Unexpected response format. Please check the console for details."
-    //     );
-    //   }
-    // } catch (error) {
-    //   console.error("Error while registering Member", error.message);
-    //   alert(
-    //     "Error while registering Member. Please check the console for details."
-    //   );
-    // } finally {
-    //   // Reset the authentication token in the headers after the request
-    //   SetAuthToken(null);
-    // }
+ 
     
     if (response.data && response.data.message) {
       console.log("Member Registered Successfully!!!", response.data.message);
