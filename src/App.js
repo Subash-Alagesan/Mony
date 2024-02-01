@@ -15,7 +15,7 @@ function App() {
   return (
     <UserProvider>
       <Routes>
-        <Route path="/" element={<SellerDashboard />} />
+        <Route path="/" element={<Signin />} />
         <Route path="/Signup" element={<Signup />} />
         <Route
           path="/member"

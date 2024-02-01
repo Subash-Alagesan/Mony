@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
   const { image, name, price } = product;
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '16px', marginBottom: '16px',marginRight: '10px',marginTop : '50px' }}>
+    <div style={{ border: '1px solid #ccc', padding: '16px', marginBottom: '16px',marginRight: '10px',marginTop : '50px',width:'300px' }}>
       <img src={shoe} alt={name} style={{ width: '100%', marginBottom: '8px' }} />
       <h4>{name}</h4>
       <p>${price}</p>
