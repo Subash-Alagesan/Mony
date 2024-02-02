@@ -10,13 +10,15 @@ import MyEarnings from "./Dashboard/MyEarnings";
 import MemberDashboard from "./Dashboard/MemberDashboard";
 import ProtectedRoutes from "./ProductedRoutes";
 import SellerDashboard from "./Dashboard/SellerDashboard";
+import ProductPage from "./Dashboard/ProductPage";
 
 function App() {
   return (
     <UserProvider>
       <Routes>
-        <Route path="/" element={<Signin />} />
+        <Route path="/" element={<SellerDashboard />} />
         <Route path="/Signup" element={<Signup />} />
+        <Route path="/productpage" component={ProductPage} />
         <Route
           path="/member"
           element={

@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from "react";
 import './AllProducts.css';
 import shoe from '../Form/images/shoe2.jpeg';
+import { Link } from 'react-router-dom';
+import Productpage from '../Dashboard/ProductPage';
 
 const ProductCard = ({ product }) => {
   const { image, name, price } = product;
+  const [menudata, setMenudata] = useState("Productpage");
 
   return (
     <div style={{ border: '1px solid #ccc', padding: '16px', marginBottom: '16px',marginRight: '10px',marginTop : '50px',width:'300px' }}>
       <img src={shoe} alt={name} style={{ width: '100%', marginBottom: '8px' }} />
       <h4>{name}</h4>
       <p>${price}</p>
-      <button>View Product</button>
+     
+      <button onClick={() => setMenudata("Productpage")}>View Product</button>
+   
     </div>
   );
 };
@@ -49,6 +54,7 @@ const AllProducts = () => {
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
+    
   );
 };
 

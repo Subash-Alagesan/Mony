@@ -27,6 +27,7 @@ import AddProduct from "./AddProduct";
 import "./SellerDashboard.css";
 import { useUser } from "../Context/UserContext";
 import { Menu, MenuItem } from '@mui/material';
+import ProductPage from "./ProductPage";
 
 const drawerWidth = 240;
 
@@ -269,14 +270,19 @@ export default function SellerDashboard({ onSearch }) {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
+        className="centeredMenuItem"
       >
         <MenuItem onClick={() => setMenudata("Products")}>
           {/* Submenu content goes here */}
-          AllProducts
+          All Products
         </MenuItem>
         <MenuItem onClick={() => setMenudata("Product")}>
           {/* Submenu content goes here */}
-          AddProducts
+          Add Products
+        </MenuItem>
+        <MenuItem onClick={() => setMenudata("Productpage")}>
+          {/* Submenu content goes here */}
+          Product Page
         </MenuItem>
         
       </Menu>
@@ -289,6 +295,7 @@ export default function SellerDashboard({ onSearch }) {
           {menudata === "MyEarnings" && <MyEarnings />}
           {menudata === "Products" && <AllProducts />}
           {menudata === "Product" && <AddProduct />}
+          {menudata === "Productpage" && <ProductPage />}
         </Box>
       </Box>
     </>

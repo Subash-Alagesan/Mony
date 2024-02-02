@@ -315,10 +315,11 @@ export default function MemberDashboard({ onSearch }) {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
+        className="centeredMenuItem"
       >
         <MenuItem onClick={() => setMenudata("Products")}>
           {/* Submenu content goes here */}
-          AllProducts
+          All Products
         </MenuItem>
         
       </Menu>

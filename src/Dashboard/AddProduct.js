@@ -98,19 +98,17 @@ const AddProduct = () => {
 </div>
               </Grid>
               <Grid item xs={6}>
-                <div className="field">
-                  <label className="lbl-field">Video URL</label>
-                  <p>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="text"
-                      placeholder="Enter video url"
-                      value={formData.video_url}
-                      onChange={handleInputChange}
-                    />
-                  </p>
-                </div>
+              <div className="field">
+  <label className="lbl-field">Video Url</label>
+  <p>
+    <input
+      className="input-field"
+      type="file"
+      name="product_images"
+      onChange={handleFileChange}
+    />
+  </p>
+</div>
               </Grid>
               <Grid item xs={6}>
                 <div className="field">
@@ -204,8 +202,16 @@ const AddProduct = () => {
                   </p>
                 </div>
               </Grid>
+
+              <Grid item xs={6}>
+                <div className="video-card">
+                 
+                </div>
+              </Grid>
+
+            
             </Grid>
-        <button type="submit">Submit</button>
+        <button type="submit" className='submit-button'>Submit</button>
       </form>
       </div>
     </div>
