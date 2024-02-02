@@ -2,7 +2,6 @@
 import React from 'react';
 
 const ImageCard = () => {
-  // Fetch image, description, and price data here
 
   return (
     <div style={{ width: '100px', margin: '50px', padding: '10px', border: '1px solid #ddd' }}>

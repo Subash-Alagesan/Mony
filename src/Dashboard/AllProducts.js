@@ -3,10 +3,13 @@ import './AllProducts.css';
 import shoe from '../Form/images/shoe2.jpeg';
 import { Link } from 'react-router-dom';
 import Productpage from '../Dashboard/ProductPage';
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ( { product, onViewProduct  }) => {
   const { image, name, price } = product;
-  const [menudata, setMenudata] = useState("Productpage");
+  const [menudata, setMenudata] = useState("ProfileDetails");
+  const navigate = useNavigate();
+
 
   return (
     <div style={{ border: '1px solid #ccc', padding: '16px', marginBottom: '16px',marginRight: '10px',marginTop : '50px',width:'300px' }}>
@@ -14,13 +17,13 @@ const ProductCard = ({ product }) => {
       <h4>{name}</h4>
       <p>${price}</p>
      
-      <button onClick={() => setMenudata("Productpage")}>View Product</button>
+      <button onClick={() => onViewProduct(product)}>View Product</button>
    
     </div>
   );
 };
 
-const AllProducts = () => {
+const AllProducts = ({ onViewProduct }) => {
   const products = [
     {
       id: 1,
@@ -51,7 +54,7 @@ const AllProducts = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} onViewProduct={onViewProduct} />
       ))}
     </div>
     

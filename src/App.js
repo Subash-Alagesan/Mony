@@ -18,7 +18,6 @@ function App() {
       <Routes>
         <Route path="/" element={<SellerDashboard />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/productpage" component={ProductPage} />
         <Route
           path="/member"
           element={
