@@ -26,7 +26,7 @@ import AllProducts from "./AllProducts";
 import AddProduct from "./AddProduct";
 import "./SellerDashboard.css";
 import { useUser } from "../Context/UserContext";
-import { Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem } from '@mui/material';
 import ProductPage from "./ProductPage";
 
 const drawerWidth = 240;
@@ -102,8 +102,8 @@ export default function SellerDashboard({ onSearch }) {
   const [menudata, setMenudata] = useState("ProfileDetails");
   const { logout, user } = useUser();
   const { userName } = user;
-  // const [memberId, setMemberId] = useState("");
-
+  const [memberId, setMemberId] = useState("");
+ 
   const navigate = useNavigate();
 
   console.log("User object:", user);
@@ -294,17 +294,13 @@ export default function SellerDashboard({ onSearch }) {
           </List>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {menudata === "ProfileDetails" && <ProfileDetails />}
-        {menudata === "Geanology" && <Geanology />}
-        {menudata === "MyEarnings" && <MyEarnings />}
-        {menudata === "Products" && (
-          <AllProducts onViewProduct={handleViewProduct} />
-        )}
-        {menudata === "Product" && <AddProduct />}
-        {menudata === "Productpage" && selectedProduct && (
-          <ProductPage product={selectedProduct} />
-        )}
-      </Box>
+          {menudata === "ProfileDetails" && <ProfileDetails />}
+          {menudata === "Geanology" && <Geanology />}
+          {menudata === "MyEarnings" && <MyEarnings />}
+          {menudata === "Products" && <AllProducts />}
+          {menudata === "Product" && <AddProduct />}
+          {menudata === "Productpage" && <ProductPage />}
+        </Box>
       </Box>
     </>
   );
