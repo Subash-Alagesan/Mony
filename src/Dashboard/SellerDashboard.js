@@ -26,7 +26,7 @@ import AllProducts from "./AllProducts";
 import AddProduct from "./AddProduct";
 import "./SellerDashboard.css";
 import { useUser } from "../Context/UserContext";
-import { Menu, MenuItem } from '@mui/material';
+import { Menu, MenuItem } from "@mui/material";
 import ProductPage from "./ProductPage";
 
 const drawerWidth = 240;
@@ -102,8 +102,8 @@ export default function SellerDashboard({ onSearch }) {
   const [menudata, setMenudata] = useState("ProfileDetails");
   const { logout, user } = useUser();
   const { userName } = user;
-  const [memberId, setMemberId] = useState("");
- 
+  // const [memberId, setMemberId] = useState("");
+
   const navigate = useNavigate();
 
   console.log("User object:", user);
@@ -130,30 +130,32 @@ export default function SellerDashboard({ onSearch }) {
     navigate("/");
   };
 
-  
-
-  const handleMemberIdChange = (event) => {
-    setMemberId(event.target.value);
-  };
+  // const handleMemberIdChange = (event) => {
+  //   setMemberId(event.target.value);
+  // };
 
   // const handleNameChange = (event) => {
   //   setName(event.target.value);
   // };
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [menuData, setMenuData] = useState('');
+  const [menuData, setMenuData] = useState("");
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setMenuData('Products');
+    setMenuData("Products");
   };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-
-
+  const handleViewProduct = (product) => {
+    console.log("View Product Clicked:", product);
+    setSelectedProduct(product);
+    setMenudata("Productpage");
+  };
 
   return (
     <>
@@ -244,59 +246,65 @@ export default function SellerDashboard({ onSearch }) {
                 <ListItemText primary="Profiledetails" />
               </ListItemButton>
             </ListItem>
-        
-        
 
             <ListItem
-        disablePadding
-        sx={{ display: 'block' }}
-        onClick={handleMenuClick}
-      >
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            justifyContent: 'center',
-            px: 6.5,
-          }}
-        >
-          <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: 'center' }}>
-            <MailIcon />
-          </ListItemIcon>
-          <ListItemText primary="Products" />
-        </ListItemButton>
-      </ListItem>
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={handleMenuClick}
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: "center",
+                  px: 6.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary="Products" />
+              </ListItemButton>
+            </ListItem>
 
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-        className="centeredMenuItem"
-      >
-        <MenuItem onClick={() => setMenudata("Products")}>
-          {/* Submenu content goes here */}
-          All Products
-        </MenuItem>
-        <MenuItem onClick={() => setMenudata("Product")}>
-          {/* Submenu content goes here */}
-          Add Products
-        </MenuItem>
-        <MenuItem onClick={() => setMenudata("Productpage")}>
-          {/* Submenu content goes here */}
-          Product Page
-        </MenuItem>
-        
-      </Menu>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+              className="centeredMenuItem"
+            >
+              <MenuItem onClick={() => setMenudata("Products")}>
+                {/* Submenu content goes here */}
+                All Products
+              </MenuItem>
+              <MenuItem onClick={() => setMenudata("Product")}>
+                {/* Submenu content goes here */}
+                Add Products
+              </MenuItem>
+              <MenuItem onClick={() => setMenudata("Productpage")}>
+                {/* Submenu content goes here */}
+                Product Page
+              </MenuItem>
+            </Menu>
           </List>
-          
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          {menudata === "ProfileDetails" && <ProfileDetails />}
-          {menudata === "Geanology" && <Geanology />}
-          {menudata === "MyEarnings" && <MyEarnings />}
-          {menudata === "Products" && <AllProducts />}
-          {menudata === "Product" && <AddProduct />}
-          {menudata === "Productpage" && <ProductPage />}
-        </Box>
+        {menudata === "ProfileDetails" && <ProfileDetails />}
+        {menudata === "Geanology" && <Geanology />}
+        {menudata === "MyEarnings" && <MyEarnings />}
+        {menudata === "Products" && (
+          <AllProducts onViewProduct={handleViewProduct} />
+        )}
+        {menudata === "Product" && <AddProduct />}
+        {menudata === "Productpage" && selectedProduct && (
+          <ProductPage product={selectedProduct} />
+        )}
+      </Box>
       </Box>
     </>
   );
