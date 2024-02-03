@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useUser } from "../Context/UserContext";
-import axios from "../Api Base URL/axios";
+import { useUser } from "../../Context/UserContext";
+import axios from "../../Api Base URL/axios";
 import "./profiledetails.css";
 
 function ProfileDetails() {

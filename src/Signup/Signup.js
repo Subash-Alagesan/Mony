@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Signup.css";
-import incan from "./images/incan.png";
-import mony from "./images/mony-logo.jpg";
+import incan from "../Form/images/incan.png";
+import mony from "../Form/images/mony-logo.jpg";
 import MemberTab from "./MemberTab";
 import SellerTab from "./SellerTab";
 

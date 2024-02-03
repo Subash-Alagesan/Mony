@@ -1,6 +1,6 @@
 import React from 'react';
-import VideoCard from '../Dashboard/VideoCard'; // Assuming you have a VideoCard component
-import ImageCard from '../Dashboard/ImageCard'; // Assuming you have an ImageCard component
+import VideoCard from './VideoCard'; // Assuming you have a VideoCard component
+import ImageCard from './ImageCard'; // Assuming you have an ImageCard component
 
 const ProductPage = () => {
   return (

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "../Api Base URL/axios";
-import SetAuthToken from "../Context/SetAuthToken";
+import axios from "../../Api Base URL/axios";
+import SetAuthToken from "../../Context/SetAuthToken";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../Context/UserContext";
+import { useUser } from "../../Context/UserContext";
 import "./adduser.css";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";

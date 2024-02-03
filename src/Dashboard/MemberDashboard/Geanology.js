@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import axios from "../Api Base URL/axios";
+import axios from "../../Api Base URL/axios";
 import "./geanology.css";
 import Adduser from "./Adduser";
-import { useUser } from "../Context/UserContext";
-import SetAuthToken from "../Context/SetAuthToken";
+import { useUser } from "../../Context/UserContext";
+import SetAuthToken from "../../Context/SetAuthToken";
 import Dialog from "@mui/material/Dialog";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";

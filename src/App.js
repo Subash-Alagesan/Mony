@@ -1,22 +1,21 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./Context/UserContext";
-import Signin from "./Form/Signin";
-import Signup from "./Form/Signup";
-import ProfileDetails from "./Dashboard/ProfileDetails";
-import GeanologyTree from "./Dashboard/Geanology";
-import MyEarnings from "./Dashboard/MyEarnings";
-import MemberDashboard from "./Dashboard/MemberDashboard";
+import Signin from "./Signin/Signin";
+import Signup from "./Signup/Signup";
+import ProfileDetails from "./Dashboard/MemberDashboard/ProfileDetails";
+import GeanologyTree from "./Dashboard/MemberDashboard/Geanology";
+import MyEarnings from "./Dashboard/MemberDashboard/MyEarnings";
+import MemberDashboard from "./Dashboard/MemberDashboard/MemberDashboard";
 import ProtectedRoutes from "./ProductedRoutes";
-import SellerDashboard from "./Dashboard/SellerDashboard";
-import ProductPage from "./Dashboard/ProductPage";
+import SellerDashboard from "./Dashboard/SellerDashboard/SellerDashboard";
+import ProductPage from "./Dashboard/SellerDashboard/ProductPage";
 
 function App() {
   return (
     <UserProvider>
       <Routes>
-        <Route path="/" element={<Signin />} />
+        <Route path="/" element={<SellerDashboard />} />
         <Route path="/Signup" element={<Signup />} />
         <Route
           path="/member"

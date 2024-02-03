@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import './myearnings.css';
-import mony from  '../Form/images/mony-logo.jpg';
+import mony from  '../../Form/images/mony-logo.jpg';
 
 function MyEarnings() {
   return (

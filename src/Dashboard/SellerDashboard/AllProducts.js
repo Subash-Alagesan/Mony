@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import './AllProducts.css';
-import shoe from '../Form/images/shoe2.jpeg';
+import shoe from '../../Form/images/shoe2.jpeg';
 import { Link } from 'react-router-dom';
-import Productpage from '../Dashboard/ProductPage';
+import Productpage from './ProductPage';
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product, onViewProduct }) => {
