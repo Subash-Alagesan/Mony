@@ -225,7 +225,7 @@ export default function SellerDashboard({ onSearch }) {
             <ListItem
               disablePadding
               sx={{ display: "block" }}
-              onClick={() => setMenudata("ProfileDetails")}
+              onClick={() => setMenudata("Profile Details")}
             >
               <ListItemButton
                 sx={{
@@ -243,7 +243,7 @@ export default function SellerDashboard({ onSearch }) {
                 >
                   <MailIcon />
                 </ListItemIcon>
-                <ListItemText primary="Profiledetails" />
+                <ListItemText primary="Profile Details" />
               </ListItemButton>
             </ListItem>
 
@@ -271,6 +271,32 @@ export default function SellerDashboard({ onSearch }) {
                 <ListItemText primary="Products" />
               </ListItemButton>
             </ListItem>
+
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={handleMenuClick}
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: "center",
+                  px: 6.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Compaingn" />
+              </ListItemButton>
+            </ListItem>
+
 
             <Menu
               anchorEl={anchorEl}
