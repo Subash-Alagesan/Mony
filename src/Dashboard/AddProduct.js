@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "./AddProduct.css";
 import Grid from "@mui/material/Grid";
 
-const AddProduct = () => {
-  // State variables for input values
-
+const AddProduct = () => { 
   const initialImageState = {
     image: null,
     altText: "",
@@ -131,7 +129,7 @@ const AddProduct = () => {
                     className="input-field"
                     type="file"
                     name="product_images"
-                    onChange={handleFileChange}
+                    onChange={handleVideoChange}
                   />
                 </p>
               </div>
