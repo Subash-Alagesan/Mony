@@ -5,11 +5,7 @@ import { Link } from 'react-router-dom';
 import Productpage from '../Dashboard/ProductPage';
 import { useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD
 const ProductCard = ({ product, onViewProduct }) => {
-=======
-const ProductCard = ( { product, onViewProduct  }) => {
->>>>>>> 5aecfcaa9968c8b00ad67514df02efd2bece9b6c
   const { image, name, price } = product;
   const [menudata, setMenudata] = useState("ProfileDetails");
   const navigate = useNavigate();
@@ -26,12 +22,8 @@ const ProductCard = ( { product, onViewProduct  }) => {
       <h4>{name}</h4>
       <p>${price}</p>
      
-<<<<<<< HEAD
       <button onClick={handleViewProduct}>View Product</button>
 
-=======
-      <button onClick={() => onViewProduct(product)}>View Product</button>
->>>>>>> 5aecfcaa9968c8b00ad67514df02efd2bece9b6c
    
     </div>
   );
