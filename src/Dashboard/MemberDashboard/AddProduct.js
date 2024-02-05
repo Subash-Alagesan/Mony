@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import axios from "../../Api Base URL/axios";
 import "./AddProduct.css";
 import Grid from "@mui/material/Grid";
@@ -13,7 +13,7 @@ const AddProduct = () => {
   const [videoFile, setVideoFile] = useState(null);
   const initialFormData = {
     product_name: "",
-    video_url:null,
+    video_url: null,
     total_stocks_added: "",
     no_of_stocks_available: "",
     commission_rate: "",
@@ -22,27 +22,18 @@ const AddProduct = () => {
     final_price: "",
   };
   const [formData, setFormData] = useState(initialFormData);
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleImageChange = (index, event) => {
-    const file = event.target.files[0];
-    const updatedImages = [...productImages];
-    updatedImages[index] = {
-      image: file,
-      altText: "", // You may want to handle alt text as well
-    };
-    setProductImages(updatedImages);
-  };
-  
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
     setVideoFile(file);
   };
-  
+
+ 
+
   const addImageField = () => {
     setProductImages([...productImages, initialImageState]);
   };
@@ -53,57 +44,91 @@ const AddProduct = () => {
     setProductImages(updatedImages);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleImageChange = (index, event) => {
+    const file = event.target.files[0];
+    const updatedImages = [...productImages];
+    updatedImages[index] = {
+      image: file,
+      altText: "", // If altText is applicable, you can update it accordingly
+    };
+    setProductImages(updatedImages);
+  };
   
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("product_name", formData.product_name);
-      formDataToSend.append("total_stocks_added", formData.total_stocks_added);
-      formDataToSend.append("no_of_stocks_available", formData.no_of_stocks_available);
-      formDataToSend.append("commission_rate", formData.commission_rate);
-      formDataToSend.append("mrp_price", formData.mrp_price);
-      formDataToSend.append("offer", formData.offer);
-      formDataToSend.append("final_price", formData.final_price);
-  
-      // Append video file
-      if (videoFile) {
-        formDataToSend.append("video_url", videoFile);
-      }
-  
-      // Append each image file separately
-      productImages.forEach((image, index) => {
-        formDataToSend.append(`product_images_${index}`, image.image);
-      });
-  
-      console.log("Form Data is", formDataToSend);
-  
-      // Make the API call using Axios
-      const response = await axios.post("api/products/createProduct", formDataToSend);
-  
-      // Handle the response as needed
-      console.log("Products are:", response.data);
-  
-      // Reset form fields
-      setProductName("");
-      setProductImages([initialImageState]);
-      setVideoFile(null);
-  
-      // Optionally, you can redirect to another page or show a success message
-    } catch (error) {
-      console.error("An error occurred while adding products:", error);
+  useEffect(() => {
+    // Log the FormData object when formData state changes
+    const logFormData = async () => {
+      console.log("Form Data is", formData);
+    };
+
+    logFormData();
+  }, [formData]);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const formDataToSend = new FormData();
+    formDataToSend.append("product_name", formData.product_name);
+    formDataToSend.append("total_stocks_added", formData.total_stocks_added);
+    formDataToSend.append("no_of_stocks_available", formData.no_of_stocks_available);
+    formDataToSend.append("commission_rate", formData.commission_rate);
+    formDataToSend.append("mrp_price", formData.mrp_price);
+    formDataToSend.append("offer", formData.offer);
+    formDataToSend.append("final_price", formData.final_price);
+
+    // Append video file
+    if (videoFile) {
+      formDataToSend.append("video_url", videoFile);
     }
-  };   
+
+    // Append each image file separately
+    productImages.forEach((image, index) => {
+      formDataToSend.append(`product_images_${index}`, image.image);
+    });
+
+    console.log("Form Data is", formDataToSend);
+
+    // Make the API call using Axios
+    const response = await axios.post("api/products/createProduct", formDataToSend);
+
+    // Handle the response as needed
+    console.log("Products are:", response.data);
+
+    // Reset form fields
+    setFormData(initialFormData);
+    setProductImages([initialImageState]);
+    setVideoFile(null);
+
+    // Optionally, you can redirect to another page or show a success message
+  } catch (error) {
+    console.error("An error occurred while adding products:", error);
+  }
+};  
+  
   return (
     <div className="Add-product">
       <div className="container">
         <h2 className="h2-tag">Add Product</h2>
         <form onSubmit={handleSubmit} className="form">
           <Grid container spacing={3}>
-            {/* ... (your form fields) ... */}
             <Grid item xs={6}>
               <div className="field">
-                <label className="lbl-field">Product Image</label>
+                <label className="lbl-field"> Product Name</label>
+                <p>
+                  <input
+                    className="input-field"
+                    type="text"
+                    name="product_name"
+                    placeholder="Enter product name"
+                    value={formData.product_name}
+                    onChange={handleInputChange}
+                  />
+                </p>
+              </div>
+            </Grid>
+            <Grid item xs={6}>
+              <div className="field">
+                <label className="lbl-field">Product Images</label>
                 {productImages.map((image, index) => (
                   <div key={index}>
                     <input
