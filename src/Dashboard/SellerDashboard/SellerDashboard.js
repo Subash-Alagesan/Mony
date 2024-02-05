@@ -28,6 +28,7 @@ import "./SellerDashboard.css";
 import { useUser } from "../../Context/UserContext";
 import { Menu, MenuItem } from '@mui/material';
 import ProductPage from "./ProductPage";
+import ProfileDetailsOfSeller from "./ProfileDetailsOfSeller";
 
 const drawerWidth = 240;
 
@@ -317,7 +318,7 @@ export default function SellerDashboard({ onSearch }) {
           </List>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {menudata === "ProfileDetails" && <ProfileDetails />}
+        {menudata === "ProfileDetails" && <ProfileDetailsOfSeller />}
         {menudata === "Geanology" && <Geanology />}
         {menudata === "MyEarnings" && <MyEarnings />}
         {menudata === "Products" && (

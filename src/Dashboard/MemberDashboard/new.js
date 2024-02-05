@@ -10,10 +10,11 @@ const AddProduct = () => {
   };
   const [productName, setProductName] = useState("");
   const [productImages, setProductImages] = useState([initialImageState]);
-  const [videoFile, setVideoFile] = useState(null);
+  const [videoFile, setVideoFile] = useState(null); // Use null for video files
+
   const initialFormData = {
     product_name: "",
-    video_url:null,
+    video_url: "",
     total_stocks_added: "",
     no_of_stocks_available: "",
     commission_rate: "",
@@ -22,10 +23,19 @@ const AddProduct = () => {
     final_price: "",
   };
   const [formData, setFormData] = useState(initialFormData);
-
+  // const formDataToSend = new FormData();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    setFormData({
+      ...formData,
+      product_images: file,
+    });
   };
 
   const handleImageChange = (index, event) => {
@@ -33,16 +43,37 @@ const AddProduct = () => {
     const updatedImages = [...productImages];
     updatedImages[index] = {
       image: file,
-      altText: "", // You may want to handle alt text as well
+      altText: "",
     };
     setProductImages(updatedImages);
   };
+  // const handleImageChange = (index, event) => {
+  //   const file = event.target.files[0];
   
-  const handleVideoChange = (e) => {
-    const file = e.target.files[0];
-    setVideoFile(file);
-  };
+  //   console.log("Selected file:", file);
   
+  //   const updatedImages = [...productImages];
+  //   updatedImages[index] = {
+  //     image: file,
+  //     altText: "",
+  //   };
+  
+  //   console.log("Updated images array:", updatedImages);
+  
+  //   setProductImages(updatedImages);
+  
+  //   // Update the form data with the new images
+  //   formDataToSend.set(`product_images_${index}`, file);
+  
+  //   console.log("Before updating form data:", formDataToSend);
+  
+  //   // Set the updated FormData to the state
+  //   setFormData(formDataToSend);
+  
+  //   console.log("After updating form data:", formDataToSend);
+  // };
+  
+
   const addImageField = () => {
     setProductImages([...productImages, initialImageState]);
   };
@@ -53,12 +84,60 @@ const AddProduct = () => {
     setProductImages(updatedImages);
   };
 
+  // Function to handle form submission
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     // const formDataToSend = new FormData();
+  //     formDataToSend.append("product_name", formData.product_name);
+  //     formDataToSend.append("video_url", videoFile);
+  //     formDataToSend.append("total_stocks_added", formData.total_stocks_added);
+  //     formDataToSend.append(
+  //       "no_of_stocks_available",
+  //       formData.no_of_stocks_available
+  //     );
+  //     formDataToSend.append("commission_rate", formData.commission_rate);
+  //     formDataToSend.append("mrp_price", formData.mrp_price);
+  //     formDataToSend.append("offer", formData.offer);
+  //     formDataToSend.append("final_price", formData.final_price);
+  //     productImages.forEach((image, index) => {
+  //       formDataToSend.append(`product_images_${index}`, image.image);
+  //     });
+
+  //     console.log("Form Data is", formDataToSend);
+  //     console.log("product images are", productImages);
+  //     console.log("Video file is ", videoFile);
+
+  //     // Make the API call using Axios
+  //     const response = await axios.post(
+  //       "api/products/createProduct",
+  //       formDataToSend
+  //     );
+
+  //     // Handle the response as needed
+  //     console.log("Products are:", response.data);
+
+  //     // Reset form fields
+  //     setProductName("");
+  //     setProductImages([initialImageState]);
+  //     setVideoFile(null);
+
+  //     // Optionally, you can redirect to another page or show a success message
+  //   } catch (error) {
+  //     console.error("An error occur while During Adding Products:", error);
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
+      // Initialize a new FormData for each submission
       const formDataToSend = new FormData();
+  
+      // Clone state values into the FormData object
       formDataToSend.append("product_name", formData.product_name);
+      formDataToSend.append("video_url", videoFile);
       formDataToSend.append("total_stocks_added", formData.total_stocks_added);
       formDataToSend.append("no_of_stocks_available", formData.no_of_stocks_available);
       formDataToSend.append("commission_rate", formData.commission_rate);
@@ -66,17 +145,12 @@ const AddProduct = () => {
       formDataToSend.append("offer", formData.offer);
       formDataToSend.append("final_price", formData.final_price);
   
-      // Append video file
-      if (videoFile) {
-        formDataToSend.append("video_url", videoFile);
-      }
-  
-      // Append each image file separately
+      // Append each image separately
       productImages.forEach((image, index) => {
         formDataToSend.append(`product_images_${index}`, image.image);
       });
   
-      console.log("Form Data is", formDataToSend);
+      console.log("Before updating form data:", formDataToSend);
   
       // Make the API call using Axios
       const response = await axios.post("api/products/createProduct", formDataToSend);
@@ -89,18 +163,46 @@ const AddProduct = () => {
       setProductImages([initialImageState]);
       setVideoFile(null);
   
+      // Log after updating state
+      console.log("After updating form data:", formDataToSend);
+      console.log("After updating product images:", productImages);
+      console.log("After updating video file:", videoFile);
+  
       // Optionally, you can redirect to another page or show a success message
     } catch (error) {
       console.error("An error occurred while adding products:", error);
     }
-  };   
+  };
+  
+  
+
+  // Function to handle file input change for video file
+  const handleVideoChange = (e) => {
+    const file = e.target.files[0];
+    setVideoFile(file);
+  };
+
   return (
     <div className="Add-product">
       <div className="container">
         <h2 className="h2-tag">Add Product</h2>
         <form onSubmit={handleSubmit} className="form">
           <Grid container spacing={3}>
-            {/* ... (your form fields) ... */}
+            <Grid item xs={6}>
+              <div className="field">
+                <label className="lbl-field"> Product Name</label>
+                <p>
+                  <input
+                    className="input-field"
+                    type="text"
+                    name="product_name"
+                    placeholder="Enter product name"
+                    value={formData.product_name}
+                    onChange={handleInputChange}
+                  />
+                </p>
+              </div>
+            </Grid>
             <Grid item xs={6}>
               <div className="field">
                 <label className="lbl-field">Product Image</label>
@@ -108,7 +210,7 @@ const AddProduct = () => {
                   <div key={index}>
                     <input
                       type="file"
-                      name={`product_images_${index}`}
+                      name="product_images"
                       onChange={(e) => handleImageChange(index, e)}
                     />
                     <button

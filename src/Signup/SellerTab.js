@@ -31,7 +31,7 @@ function SellerTab() {
     branch: "",
     ifsc_code: "",
     aadhaar_no: "",
-    pan_no: "",
+    pancard_no: "",
     company_logo: "",
     company_name: "",
     gst_no: "",
@@ -106,22 +106,7 @@ function SellerTab() {
       console.error("Error while registering Seller", error.message);
     }
   };
-
-  // const handleFileUpload = (event) => {
-  //   const selectedFile = event.target.files[0]; // Get the selected file
-  //   if (selectedFile) {
-  //     // Perform actions with the selected file (e.g., display preview)
-  //     const reader = new FileReader();
-  //     reader.onload = (e) => {
-  //       const imageUrl = e.target.result;
-  //       // Do something with the imageUrl (e.g., set it in state to display a preview)
-  //       // Example: setState({ uploadedImageUrl: imageUrl });
-  //     };
-  //     reader.readAsDataURL(selectedFile);
-  //   }
-  // };
-
-  return (
+   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
         <form onSubmit={handleSubmit}>

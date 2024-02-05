@@ -6,9 +6,9 @@ import myearnings from '../Dashboard/MyEarnings';
 import MemberDashboard from '../Dashboard/MemberDashboard';
 
 
-const Layout = () =>{
-    return();
-}
+// const Layout = () =>{
+//     return();
+// }
 
 const router = createBrowserRouter([
     {
