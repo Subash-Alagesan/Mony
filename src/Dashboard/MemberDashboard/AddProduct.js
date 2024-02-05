@@ -4,6 +4,7 @@ import "./AddProduct.css";
 import Grid from "@mui/material/Grid";
 
 const AddProduct = () => {
+  console.log("AddProduct component rendered");
   const initialImageState = {
     image: null,
     altText: "",
@@ -24,14 +25,27 @@ const AddProduct = () => {
   const [formData, setFormData] = useState(initialFormData);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log("Name:", name);
+    console.log("Value:", value);
     setFormData({ ...formData, [name]: value });
   };
+  
 
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
-    setVideoFile(file);
+    const updatedFormData = new FormData();
+    updatedFormData.append("product_name", formData.product_name);
+    updatedFormData.append("total_stocks_added", formData.total_stocks_added);
+    updatedFormData.append("no_of_stocks_available", formData.no_of_stocks_available);
+    updatedFormData.append("commission_rate", formData.commission_rate);
+    updatedFormData.append("mrp_price", formData.mrp_price);
+    updatedFormData.append("offer", formData.offer);
+    updatedFormData.append("final_price", formData.final_price);
+    updatedFormData.append("video_url", file);
+  
+    setFormData(updatedFormData);
   };
-
+  
  
 
   const addImageField = () => {
@@ -46,13 +60,19 @@ const AddProduct = () => {
 
   const handleImageChange = (index, event) => {
     const file = event.target.files[0];
-    const updatedImages = [...productImages];
-    updatedImages[index] = {
-      image: file,
-      altText: "", // If altText is applicable, you can update it accordingly
-    };
-    setProductImages(updatedImages);
+    const updatedFormData = new FormData();
+    updatedFormData.append("product_name", formData.product_name);
+    updatedFormData.append("total_stocks_added", formData.total_stocks_added);
+    updatedFormData.append("no_of_stocks_available", formData.no_of_stocks_available);
+    updatedFormData.append("commission_rate", formData.commission_rate);
+    updatedFormData.append("mrp_price", formData.mrp_price);
+    updatedFormData.append("offer", formData.offer);
+    updatedFormData.append("final_price", formData.final_price);
+    updatedFormData.append(`product_images_${index}`, file);
+  
+    setFormData(updatedFormData);
   };
+  
   
   useEffect(() => {
     // Log the FormData object when formData state changes
@@ -65,7 +85,8 @@ const AddProduct = () => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-
+  
+  console.log("AddProduct component rendered");
   try {
     const formDataToSend = new FormData();
     formDataToSend.append("product_name", formData.product_name);
