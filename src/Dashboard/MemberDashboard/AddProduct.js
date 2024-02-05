@@ -53,47 +53,7 @@ const AddProduct = () => {
     setProductImages(updatedImages);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("product_name", formData.product_name);
-      formDataToSend.append("total_stocks_added", formData.total_stocks_added);
-      formDataToSend.append("no_of_stocks_available", formData.no_of_stocks_available);
-      formDataToSend.append("commission_rate", formData.commission_rate);
-      formDataToSend.append("mrp_price", formData.mrp_price);
-      formDataToSend.append("offer", formData.offer);
-      formDataToSend.append("final_price", formData.final_price);
-  
-      // Append video file
-      if (videoFile) {
-        formDataToSend.append("video_url", videoFile);
-      }
-  
-      // Append each image file separately
-      productImages.forEach((image, index) => {
-        formDataToSend.append(`product_images_${index}`, image.image);
-      });
-  
-      console.log("Form Data is", formDataToSend);
-  
-      // Make the API call using Axios
-      const response = await axios.post("api/products/createProduct", formDataToSend);
-  
-      // Handle the response as needed
-      console.log("Products are:", response.data);
-  
-      // Reset form fields
-      setProductName("");
-      setProductImages([initialImageState]);
-      setVideoFile(null);
-  
-      // Optionally, you can redirect to another page or show a success message
-    } catch (error) {
-      console.error("An error occurred while adding products:", error);
-    }
-  };   
+    
   return (
     <div className="Add-product">
       <div className="container">
